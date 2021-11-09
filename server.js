@@ -90,16 +90,29 @@ const menustart = () => {
 }
 
 function viewDepts() {
-    console.log("vd")
-    process.exit;
+    let query = "select distinct name from snpf7b5yeg3jcrem.departments";
+    return db.promise().query(query);
 }
 function viewRoles() {
     console.log("vd")
     process.exit;
 }
 function addDepartment() {
-    console.log("vd")
-    process.exit;
+    return inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "department",
+                message: "What is the name of the new department?",
+            },
+        ])
+        .then((answer) => {
+            const query1 = `
+                    insert into departments (name)
+                    values ("${answer.department}")`;
+            db.promise().query(query1)
+        })
+
 }
 function viewEmployees() {
     console.log("vd")
@@ -119,3 +132,5 @@ function updateEmployee() {
     process.exit;
 }
 menustart();
+
+
