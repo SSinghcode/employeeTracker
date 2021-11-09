@@ -48,35 +48,39 @@ const menustart = () => {
                 menustart()
                 break;
 
-            case "Add a department":
-
-                const adddepartment = await addDepartment();
-                console.table(adddepartment[0]);
-                menustart()
-                break;
-
             case "View all employees":
 
                 const employees = await viewEmployees();
                 console.table(employees[0]);
                 menustart()
                 break;
+            case "Add a department":
+
+                const adddepartment = await addDepartment();
+                let adddepartment2 = await viewDepts();
+                console.table(adddepartment2[0]);
+                menustart()
+                break;
+
             case "Add a role":
 
                 const addrole = await addRole();
-                console.table(addrole[0]);
+                let addrole1 = await viewRoles();
+                console.table(addrole1[0]);
                 menustart()
                 break;
             case "Add an employee":
 
                 const addemployee = await addEmployee();
-                console.table(addemployee[0]);
+                let addemployee1 = await viewRoles();
+                console.table(addemployee1[0]);
                 menustart()
                 break;
             case "Update an employee role":
 
                 const updateemployee = await updateEmployee();
-                console.table(updateemployee[0]);
+                const updateemployee1 = await viewEmployees()
+                console.table(updateemployee1[0]);
                 menustart()
                 break;
             default:
@@ -85,32 +89,32 @@ const menustart = () => {
     })
 }
 
-function viewDepts(){
+function viewDepts() {
     console.log("vd")
     process.exit;
 }
-function viewRoles(){
+function viewRoles() {
     console.log("vd")
     process.exit;
 }
-function addDepartment(){
+function addDepartment() {
     console.log("vd")
     process.exit;
 }
-function  viewEmployees(){
+function viewEmployees() {
     console.log("vd")
     process.exit;
 }
-function addRole(){
+function addRole() {
     console.log("vd")
     process.exit;
 }
-function addEmployee(){
+function addEmployee() {
     console.log("vd")
     process.exit;
 }
 
-function updateEmployee(){
+function updateEmployee() {
     console.log("vd")
     process.exit;
 }
