@@ -72,7 +72,7 @@ const menustart = () => {
             case "Add an employee":
 
                 const addemployee = await addEmployee();
-                let addemployee1 = await viewRoles();
+                let addemployee1 = await  viewEmployees();
                 console.table(addemployee1[0]);
                 menustart()
                 break;
@@ -94,8 +94,9 @@ function viewDepts() {
     return db.promise().query(query);
 }
 function viewRoles() {
-    console.log("vd")
-    process.exit;
+   
+    let query5 = "select title from snpf7b5yeg3jcrem.roles";
+    return db.promise().query(query5);
 }
 function addDepartment() {
     return inquirer
@@ -105,6 +106,7 @@ function addDepartment() {
                 name: "department",
                 message: "What is the name of the new department?",
             },
+            
         ])
         .then((answer) => {
             const query1 = `
@@ -115,16 +117,81 @@ function addDepartment() {
 
 }
 function viewEmployees() {
-    console.log("vd")
-    process.exit;
+    let query2 = `
+  select first_name, last_name, title, salary, name AS department_name
+  from  snpf7b5yeg3jcrem.employees
+  join roles 
+  on role_id = roles.id
+  join departments
+  on department_id = departments.id`;
+  return db.promise().query(query2);
 }
 function addRole() {
-    console.log("vd")
-    process.exit;
+    return inquirer
+         .prompt([
+           {
+            type: "input",
+            name: "rolename",
+            message: "What is the title of the role?",
+           },
+           {
+            type: "input",
+            name: "rolesalary",
+            message: "What is the salary of the role?",
+           },
+           {
+            type: "input",
+            name: "roledepartment",
+            message: "What is the deptartment ID of the role?",
+           },
+         ])
+
+         .then((answer) => {
+           const sql = `
+                       insert into roles (title, salary, department_id)
+                       values ("${answer.rolename}","${answer.rolesalary}","${answer.roledepartment}")`;
+           db.promise().query(sql)
+         })
+
 }
 function addEmployee() {
-    console.log("vd")
-    process.exit;
+   
+    return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "fname",
+        message: "What is the first name of the new employee?",
+      },
+      {
+        type: "input",
+        name: "lname",
+        message: "What is the last  name of the new employee?",
+      },
+      {
+        type: "input",
+        name: "rid",
+        message: "What is the role id the new employee?",
+      },
+      {
+        type: "input",
+        name: "mid",
+        message: "What is the manager id the new employee?",
+      },
+    ])
+    .then((answer) => {
+      const sql = `
+                  insert into departments (name)
+                  values ("${answer.dname}")`;
+      db.query(sql, (err, results) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+    let query3 = "select distinct name from snpf7b5yeg3jcrem.employees";
+    return db.promise().query(query3);
+  })
+})
 }
 
 function updateEmployee() {
