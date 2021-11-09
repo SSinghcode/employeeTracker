@@ -1,4 +1,5 @@
 const express = require('express');
+const inquirer = require("inquirer")
 const mysql = require('mysql2');
 
 const PORT = process.env.PORT || 3001;
@@ -83,3 +84,34 @@ const menustart = () => {
         }
     })
 }
+
+function viewDepts(){
+    console.log("vd")
+    process.exit;
+}
+function viewRoles(){
+    console.log("vd")
+    process.exit;
+}
+function addDepartment(){
+    console.log("vd")
+    process.exit;
+}
+function  viewEmployees(){
+    console.log("vd")
+    process.exit;
+}
+function addRole(){
+    console.log("vd")
+    process.exit;
+}
+function addEmployee(){
+    console.log("vd")
+    process.exit;
+}
+
+function updateEmployee(){
+    console.log("vd")
+    process.exit;
+}
+menustart();
