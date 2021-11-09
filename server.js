@@ -47,13 +47,19 @@ const menustart = () => {
                 menustart()
                 break;
 
+            case "Add a department":
+
+                const adddepartment = await addDepartment();
+                console.table(adddepartment[0]);
+                menustart()
+                break;
+
             case "View all employees":
 
                 const employees = await viewEmployees();
                 console.table(employees[0]);
                 menustart()
                 break;
-
             case "Add a role":
 
                 const addrole = await addRole();
@@ -74,4 +80,6 @@ const menustart = () => {
                 break;
             default:
                 process.exit();
-        }})}
+        }
+    })
+}
