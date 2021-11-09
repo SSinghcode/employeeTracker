@@ -42,33 +42,33 @@ const menustart = () => {
                 break;
             case "View all the roles":
 
-                const role = await viewDepts();
+                const role = await viewRoles();
                 console.table(role[0]);
                 menustart()
                 break;
 
             case "View all employees":
 
-                const employees = await viewDepts();
+                const employees = await viewEmployees();
                 console.table(employees[0]);
                 menustart()
                 break;
 
             case "Add a role":
 
-                const addrole = await viewDepts();
+                const addrole = await addRole();
                 console.table(addrole[0]);
                 menustart()
                 break;
             case "Add an employee":
 
-                const addemployee = await viewDepts();
+                const addemployee = await addEmployee();
                 console.table(addemployee[0]);
                 menustart()
                 break;
             case "Update an employee role":
 
-                const updateemployee = await viewDepts();
+                const updateemployee = await updateEmployee();
                 console.table(updateemployee[0]);
                 menustart()
                 break;
