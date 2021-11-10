@@ -72,7 +72,7 @@ const menustart = () => {
             case "Add an employee":
 
                 const addemployee = await addEmployee();
-                let addemployee1 = await  viewEmployees();
+                let addemployee1 = await viewEmployees();
                 console.table(addemployee1[0]);
                 menustart()
                 break;
@@ -94,7 +94,7 @@ function viewDepts() {
     return db.promise().query(query);
 }
 function viewRoles() {
-   
+
     let query5 = "select title from snpf7b5yeg3jcrem.roles";
     return db.promise().query(query5);
 }
@@ -106,7 +106,7 @@ function addDepartment() {
                 name: "department",
                 message: "What is the name of the new department?",
             },
-            
+
         ])
         .then((answer) => {
             const query1 = `
@@ -124,74 +124,69 @@ function viewEmployees() {
   on role_id = roles.id
   join departments
   on department_id = departments.id`;
-  return db.promise().query(query2);
+    return db.promise().query(query2);
 }
 function addRole() {
     return inquirer
-         .prompt([
-           {
-            type: "input",
-            name: "rolename",
-            message: "What is the title of the role?",
-           },
-           {
-            type: "input",
-            name: "rolesalary",
-            message: "What is the salary of the role?",
-           },
-           {
-            type: "input",
-            name: "roledepartment",
-            message: "What is the deptartment ID of the role?",
-           },
-         ])
+        .prompt([
+            {
+                type: "input",
+                name: "rolename",
+                message: "What is the title of the role?",
+            },
+            {
+                type: "input",
+                name: "rolesalary",
+                message: "What is the salary of the role?",
+            },
+            {
+                type: "input",
+                name: "roledepartment",
+                message: "What is the deptartment ID of the role?",
+            },
+        ])
 
-         .then((answer) => {
-           const sql = `
+        .then((answer) => {
+            const sql = `
                        insert into roles (title, salary, department_id)
                        values ("${answer.rolename}","${answer.rolesalary}","${answer.roledepartment}")`;
-           db.promise().query(sql)
-         })
+            db.promise().query(sql)
+        })
 
 }
 function addEmployee() {
-   
+
     return inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "fname",
-        message: "What is the first name of the new employee?",
-      },
-      {
-        type: "input",
-        name: "lname",
-        message: "What is the last  name of the new employee?",
-      },
-      {
-        type: "input",
-        name: "rid",
-        message: "What is the role id the new employee?",
-      },
-      {
-        type: "input",
-        name: "mid",
-        message: "What is the manager id the new employee?",
-      },
-    ])
-    .then((answer) => {
-      const sql = `
-                  insert into departments (name)
-                  values ("${answer.dname}")`;
-      db.query(sql, (err, results) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-    let query3 = "select distinct name from snpf7b5yeg3jcrem.employees";
-    return db.promise().query(query3);
-  })
-})
+        .prompt([
+            {
+                type: "input",
+                name: "femployee",
+                message: "What is the first name of the employee?",
+            },
+            {
+                type: "input",
+                name: "lemployee",
+                message: "What is the last name of the employee?",
+            },
+            {
+                type: "input",
+                name: "rid",
+                message: "What is the role ID of the role?",
+            },
+            {
+                type: "input",
+                name: "mid",
+                message: "What is the manager ID of the role?",
+            },
+
+        ])
+        .then((answer) => {
+            const query4 = `
+                     insert into employees (first_name, last_name, role_id, manager_id)
+                     values ("${answer.femployee}","${answer.lemployee}","${answer.rid}","${answer.mid}")`;
+            db.promise().query(query4)
+        })
+
 }
 
 function updateEmployee() {
