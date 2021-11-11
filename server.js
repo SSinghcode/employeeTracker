@@ -190,8 +190,26 @@ function addEmployee() {
 }
 
 function updateEmployee() {
-    console.log("vd")
-    process.exit;
+    return inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "froleid",
+            message: "What is the role id of the employee?",
+        },
+        {
+            type: "input",
+            name: "employeeid",
+            message: "What is the employeeid of the employee?",
+        },
+    
+
+    ])
+    .then((answer) => {
+        const query4 = `
+        UPDATE employees SET role_id = ${answer.froleid} WHERE id = ${answer.employeeid}`;
+        db.promise().query(query4)
+    })
 }
 menustart();
 
